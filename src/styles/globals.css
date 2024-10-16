@@ -40,3 +40,50 @@ a {
     color-scheme: dark;
   }
 }
+
+.goal-progress-bar {
+  width: 100%;
+  max-width: 28rem; /* equivalent to max-w-md */
+  margin: 0 auto;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.progress-label,
+.progress-percentage {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.progress {
+  height: 1rem;
+  width: 100%;
+  background-color: #e5e7eb; /* light gray */
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #2563eb; /* blue */
+  border-radius: 9999px;
+  transition: width 300ms ease-in-out;
+}
+
+.progress-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.progress-current,
+.progress-goal {
+  font-size: 0.875rem;
+  color: #6b7280; /* gray */
+}
