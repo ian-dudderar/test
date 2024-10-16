@@ -3,10 +3,8 @@ import WebSocketComponent from "./components/WebSocketComponent";
 import { useEffect, useState, useRef } from "react";
 import GoalProgressBar from "./components/GoalProgressBar";
 export default function Home() {
-  // const [message, setMessage] = useState("test");
   const [socket, setSocket] = useState<WebSocket | null>(null);
   const [salesTotal, setSalesTotal] = useState(0);
-  // const [previousSalesTotal, setPreviousSalesTotal] = useState(0);
 
   const startVal = useRef(0);
   const countupRef = useRef(null);
@@ -23,9 +21,7 @@ export default function Home() {
     };
 
     ws.onmessage = (event) => {
-      console.log("Message from server:", event.data);
-      startVal.current = salesTotal;
-      setSalesTotal(salesTotal + parseFloat(event.data));
+      setSalesTotal((prev) => prev + parseFloat(event.data));
     };
 
     ws.onclose = () => {
@@ -45,12 +41,10 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    if (salesTotal === 0) return;
+
     initCountUp(salesTotal);
   }, [salesTotal]);
-
-  // useEffect(() => {
-  //   console.log("message received: ", message);
-  // }, [message]);
 
   // dynamically import and initialize countUp, sets value of `countUpAnim`
   // you don't have to import this way, but this works best for next.js
@@ -63,9 +57,9 @@ export default function Home() {
         salesTotal,
         options
       );
-      startVal.current = salesTotal;
       if (!countUpAnim.error) {
         countUpAnim.start();
+        startVal.current = salesTotal;
       } else {
         console.error(countUpAnim.error);
       }
