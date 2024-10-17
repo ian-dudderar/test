@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface ProgressProps {
   value: number;
@@ -8,11 +9,16 @@ interface ProgressProps {
 const Progress: React.FC<ProgressProps> = ({ value, className = "" }) => {
   return (
     <div
-      className={`h-2 w-full bg-gray-200 rounded-full overflow-hidden ${className}`}
+      className={`h-12 w-full bg-blue-100 rounded-full overflow-hidden border-4 border-pink-300 ${className}`}
     >
       <div
-        className="h-full bg-blue-500 rounded-full transition-all duration-300 ease-in-out"
-        style={{ width: `${value}%` }}
+        className="h-full rounded-full transition-all duration-300 ease-in-out bg-gradient-to-r from-pink-300 to-blue-300 animate-candy-cane"
+        style={{
+          width: `${value}%`,
+          backgroundSize: "40px 40px",
+          backgroundImage:
+            "linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent 100%)",
+        }}
       />
     </div>
   );
@@ -33,23 +39,31 @@ export default function GoalProgressBar({
   );
 
   return (
-    <div className="goal-progress-bar w-full max-w-md p-4 bg-white rounded-lg shadow-md">
-      <div className="progress-header flex justify-between mb-2">
-        <span className="progress-label text-sm font-medium text-gray-600">
-          Progress
-        </span>
-        <span className="progress-percentage text-sm font-bold text-blue-600">
-          {percentage}%
-        </span>
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
+      <style jsx global>{`
+        @keyframes candy-cane {
+          0% {
+            background-position: 0 0;
+          }
+          100% {
+            background-position: 40px 0;
+          }
+        }
+        .animate-candy-cane {
+          animation: candy-cane 1s linear infinite;
+        }
+      `}</style>
+      <div className="mb-8">
+        <Image
+          src="https://maxandlily.com/cdn/shop/files/maxlily_bf8919cd-416f-4fb9-a72f-36a0cc30f605.png?height=400&v=1672769861"
+          alt="Company Logo"
+          width={600}
+          height={200}
+          className="max-w-full h-auto"
+        />
       </div>
-      <Progress value={percentage} />
-      <div className="progress-footer flex justify-between mt-2">
-        <span className="progress-current text-sm text-gray-600">
-          Current: {currentAmount}
-        </span>
-        <span className="progress-goal text-sm text-gray-600">
-          Goal: {goalAmount}
-        </span>
+      <div className="w-full max-w-md">
+        <Progress value={percentage} />
       </div>
     </div>
   );
