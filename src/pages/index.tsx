@@ -82,6 +82,7 @@ export default function Home() {
       >
         0
       </h1> */}
+      {/* <GoalProgressBar currentAmount={9} goalAmount={10} /> */}
       <GoalProgressBar currentAmount={salesTotal} goalAmount={100000} />
       {/* <WebSocketComponent /> */}
     </>
