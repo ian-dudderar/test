@@ -70,7 +70,8 @@ export default function Home() {
 
   return (
     <>
-      <h1
+      {/* <div className="text-red-500">hello</div> */}
+      {/* <h1
         ref={countupRef}
         onClick={() => {
           // replay animation on click
@@ -80,7 +81,7 @@ export default function Home() {
         }}
       >
         0
-      </h1>
+      </h1> */}
       <GoalProgressBar currentAmount={salesTotal} goalAmount={100000} />
       {/* <WebSocketComponent /> */}
     </>
