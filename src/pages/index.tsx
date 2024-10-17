@@ -70,21 +70,24 @@ export default function Home() {
 
   return (
     <>
-      {/* <div className="text-red-500">hello</div> */}
-      {/* <h1
-        ref={countupRef}
-        onClick={() => {
-          // replay animation on click
-          // test();
-          // initCountUp(30000, salesTotal);
-          // countUpAnim.start();
-        }}
-      >
-        0
-      </h1> */}
-      {/* <GoalProgressBar currentAmount={9} goalAmount={10} /> */}
-      <GoalProgressBar currentAmount={salesTotal} goalAmount={100000} />
-      {/* <WebSocketComponent /> */}
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
+     
+        <GoalProgressBar currentAmount={salesTotal} goalAmount={100000} />
+        <h1
+          ref={countupRef}
+          onClick={() => {
+            // replay animation on click
+            // test();
+            // initCountUp(30000, salesTotal);
+            // countUpAnim.start();
+          }}
+        >
+          0
+        </h1> 
+        {/* <WebSocketComponent /> */}
+
+      </div>
+      
     </>
   );
 }

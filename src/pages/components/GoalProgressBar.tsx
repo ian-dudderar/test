@@ -39,7 +39,8 @@ export default function GoalProgressBar({
   );
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
+    <>
+    {/* <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4"> */}
       <style jsx global>{`
         @keyframes candy-cane {
           0% {
@@ -65,9 +66,8 @@ export default function GoalProgressBar({
       <div className="w-full max-w-md">
         <Progress value={percentage} />
       </div>
-      <div className="mt-8 h-10 text-8xl text-primary-blue">
-        {currentAmount}
-      </div>
-    </div>
+
+    {/* </div> */}
+    </>
   );
 }
