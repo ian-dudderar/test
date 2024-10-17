@@ -9,13 +9,13 @@ interface ProgressProps {
 const Progress: React.FC<ProgressProps> = ({ value, className = "" }) => {
   return (
     <div
-      className={`h-12 w-auto bg-blue-100 rounded-full overflow-hidden border-4 border-pink-300 ${className}`}
+      className={`h-12 w-full bg-blue-100 rounded-full overflow-hidden border-4 border-pink-300 ${className}`}
     >
       <div
-        className="h-full  transition-all duration-[2000ms] ease-in-out bg-gradient-to-r from-pink-300 to-pink-300 animate-candy-cane"
+        className="h-full transition-all duration-[2000ms] ease-in-out bg-gradient-to-r from-pink-300 to-pink-300 "
         style={{
           width: `${value}%`,
-          backgroundSize: "800px 800px",
+          backgroundSize: "40px 40px",
           // backgroundImage:
           //   "linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent 100%)",
         }}
@@ -40,7 +40,8 @@ export default function GoalProgressBar({
 
   return (
     <>
-    <div className="w-1/2">
+    {/* // Change the width here if u want to */}
+    <div className="">
       <style jsx global>{`
         @keyframes candy-cane {
           0% {
@@ -60,10 +61,10 @@ export default function GoalProgressBar({
           alt="Company Logo"
           width={600}
           height={200}
-          className="max-w-full h-auto"
+          className=" h-auto"
         />
       </div>
-      <div className="w-full max-w-lg">
+      <div className="w-full">
         <Progress value={percentage} />
       </div>
 

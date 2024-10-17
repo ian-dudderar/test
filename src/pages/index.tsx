@@ -71,14 +71,11 @@ export default function Home() {
   return (
     <>
       <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
-        <div className="w-1/2 bg-red-500">hi</div>
-      
         <GoalProgressBar currentAmount={salesTotal} goalAmount={100000} />
         <div className="text-8xl pt-4">
           <span>$</span><span ref={countupRef}>0</span>
         </div>
       </div>
-      
     </>
   );
 }
