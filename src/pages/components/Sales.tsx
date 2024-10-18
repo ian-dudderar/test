@@ -9,9 +9,13 @@ interface AnimatedProgressProps {
 
 const AnimatedProgress: React.FC<AnimatedProgressProps> = ({ value }) => {
   return (
-    <div className="h-12 w-full bg-blue-100 rounded-full overflow-hidden border-4">
+    <div
+      id="container"
+      className="h-12 w-full bg-blue-100 rounded-full overflow-hidden border-4"
+    >
       <div
-        className="transition-all duration-[2000ms] ease-in-out h-full rounded-md "
+        id="progress"
+        className="transition-all duration-[2000ms] ease-in-out h-full rounded-md overflow-y-visible"
         style={{
           background:
             "linear-gradient(45deg,rgba(255, 255, 255, 0.5) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, 0.5) 50%,rgba(255, 255, 255, 0.5) 75%,transparent 75%,transparent)",
@@ -61,6 +65,13 @@ export default function Sales({
 
   useEffect(() => {
     if (currentAmount === 0) return;
+    const element = document.getElementById("container");
+    if (element) {
+      element.classList.add("highlight");
+      setTimeout(() => {
+        element.classList.remove("highlight");
+      }, 2000);
+    }
 
     initCountUp(currentAmount);
   }, [currentAmount]);
@@ -89,6 +100,16 @@ export default function Sales({
       }
     } else {
       console.error("countupRef.current is null");
+    }
+  }
+
+  function onClick() {
+    const element = document.getElementById("container");
+    if (element) {
+      element.classList.add("highlight");
+      setTimeout(() => {
+        element.classList.remove("highlight");
+      }, 2000);
     }
   }
 
@@ -129,7 +150,6 @@ export default function Sales({
             </div>
           </div>
           <AnimatedProgress value={percentage} />
-          {/* <AnimatedProgressBar percentage={percentage} /> */}
           <div className="text-lg justify-between w-full flex p-2 text-primary-pink">
             <div>
               <span>Current: $</span>
@@ -138,6 +158,7 @@ export default function Sales({
             <span>Goal: $1,000,000</span>
           </div>
         </div>
+        {/* <button onClick={onClick}>Click me</button> */}
       </div>
     </>
   );

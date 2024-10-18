@@ -46,3 +46,12 @@ a {
     color-scheme: dark;
   }
 }
+
+.highlight {
+  animation: move 0.5s linear infinite, colorChange 2s ease-out !important;
+}
+@keyframes colorChange {
+  50% {
+    border-color: var(--primary-blue);
+  }
+}
