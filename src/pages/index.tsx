@@ -1,16 +1,19 @@
 import { CountUp } from "countup.js";
 import { useEffect, useState, useRef } from "react";
 import Sales from "./components/Sales";
+import Confetti from "./components/Confetti";
 import Image from "next/image";
 
 export default function Home() {
   const [socket, setSocket] = useState<WebSocket | null>(null);
   const [salesTotal, setSalesTotal] = useState(0);
+  const [goalReached, setGoalReached] = useState(false);
 
+  const SALES_GOAL = 100000;
   const startVal = useRef(0);
   const countupRef = useRef(null);
-  let countUpAnim: CountUp;
 
+  let countUpAnim: CountUp;
   const options = { decimalPlaces: 2, startVal: startVal.current };
 
   useEffect(() => {
@@ -43,6 +46,9 @@ export default function Home() {
 
   useEffect(() => {
     if (salesTotal === 0) return;
+    if (salesTotal >= 100000) {
+      setGoalReached(true);
+    }
 
     initCountUp(salesTotal);
   }, [salesTotal]);
@@ -72,7 +78,8 @@ export default function Home() {
   return (
     <>
       <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
-        <Sales currentAmount={salesTotal} goalAmount={100000} />
+        {goalReached && <Confetti />}
+        <Sales currentAmount={salesTotal} goalAmount={SALES_GOAL} />
       </div>
     </>
   );
