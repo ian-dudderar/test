@@ -32,11 +32,6 @@ app.prepare().then(() => {
             client.send(data);
           });
         });
-
-        // console.log(JSON.parse(req.body));
-        // clients.forEach((client) => {
-        //   client.send("HELLO FROM IAN");
-        // });
       } else {
         await handle(req, res, parsedUrl);
       }
@@ -52,29 +47,29 @@ app.prepare().then(() => {
     })
     .listen(port, () => {
       console.log(`> Ready on ${URL}`);
-      onServerStart();
+      // onServerStart();
     });
 });
 
-const onServerStart = () => {
-  const WebSocket = require("ws");
-  const wss = new WebSocket.Server({ port: 8080 });
-  // fetch(`${URL}/api/webhooks`);
+// const onServerStart = () => {
+//   const WebSocket = require("ws");
+//   const wss = new WebSocket.Server({ port: 8080 });
+//   // fetch(`${URL}/api/webhooks`);
 
-  wss.on("connection", (ws) => {
-    console.log("New WebSocket connection");
-    clients.push(ws);
+//   wss.on("connection", (ws) => {
+//     console.log("New WebSocket connection");
+//     clients.push(ws);
 
-    // ws.isAlive = true; dont know if we need this or nottt
+//     // ws.isAlive = true; dont know if we need this or nottt
 
-    ws.on("message", (message) => {
-      console.log(`Received: ${message}`);
-      ws.send(`Server received: ${message}`);
-    });
+//     ws.on("message", (message) => {
+//       console.log(`Received: ${message}`);
+//       ws.send(`Server received: ${message}`);
+//     });
 
-    ws.on("close", () => {
-      console.log("Client disconnected");
-      clients = clients.filter((client) => client !== ws);
-    });
-  });
-};
+//     ws.on("close", () => {
+//       console.log("Client disconnected");
+//       clients = clients.filter((client) => client !== ws);
+//     });
+//   });
+// };
